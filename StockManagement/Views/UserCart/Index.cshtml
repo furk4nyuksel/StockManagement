@@ -1,0 +1,125 @@
+﻿@model StockManagement.Models.UserCartModelList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+<h2>Sepetteki Ürünler</h2>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<div class="col-lg-5">
+    @{
+
+        if (Session["Sepetkontrol"] != null)
+        {
+            <h3 class="bg-warning">@Session["Sepetkontrol"]</h3>
+            Session["Sepetkontrol"] = null;
+        }
+
+
+
+        if (ViewBag.Hatali != null)
+        {
+            <h3 class="bg-warning">@ViewBag.Hatali</h3>
+        }
+        else
+        {
+            <table class="table-bordered table-responsive table-striped table-condensed table-hover  ">
+                <tr>
+                    <th>Görüntü</th>
+                    <th>Ürün Adı</th>
+                    <th>ürün Adeti</th>
+                    <th>Ürün Fiyatı</th>
+                    <th> Oluşturma Tarihi</th>
+                    <th>Arttır</th>
+                    <th>Azalt</th>
+                    <th>Sil</th>
+
+
+                </tr>
+
+                @foreach (StockManagementOperation.UserCart sepet in ViewBag.Sepet)
+                {
+                    <tr>
+                        <td> <img src="@sepet.Products.ProductPhotograph.First().PhotoSource" style="width:100px;height:100px;" /> </td>
+                        <td><a href="~/Product/ProductDetails/@sepet.Products.ProductID">@sepet.Products.ProductName</a></td>
+                        <td>@sepet.Quantity</td>
+                        <td>@sepet.Products.NewPrice</td>
+                        <td>@String.Format("{0:dd/MM/yyyy}", sepet.CreDate)    </td>
+                        <td>@Html.ActionLink("Arttır", "IncreaseUserCart", "UserCart", new { @id = sepet.UserCartID }, new { @class = "btn btn-success" })</td>
+                        <td>@Html.ActionLink("Azalt", "DecreaseUserCart", "UserCart", new { @id = sepet.UserCartID }, new { @class = "btn btn-warning" })</td>
+                        <td>@Html.ActionLink("Sil", "DropUserCart", "UserCart", new { @id = sepet.UserCartID }, new { @class = "btn btn-danger" })</td>
+                    </tr>
+
+                    <br/>
+
+                    <br/>
+                    <br />
+
+
+
+
+
+
+                }
+            </table>
+        }
+
+
+
+
+
+
+
+
+        if (Model ==null||Model.Count == 0)
+        {
+            <h3 class="bg-warning"></h3>
+        }
+        else
+        {
+            <div class=" navbar-brand  ">
+                <table class="table-bordered table-responsive table-striped table-condensed table-hover">
+                    <tr>
+                        <td>Ürün Sayısı</td>
+                        <td>Tutar</td>
+
+
+                    </tr>
+                    <tr>
+
+                        <td>@Model.Count</td>
+                        <td> @String.Format("{0:C2}", Model.Pay) </td>
+
+
+                    </tr>
+
+                </table>
+
+
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="col-lg-offset-5">
+
+
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+            <br />
+
+
+
+            @Html.ActionLink("Adres Kısımına Git", "Index", "Adress", null, new { @class = "btn btn-success" })
+
+
+
+        }
+
+
+
+    }

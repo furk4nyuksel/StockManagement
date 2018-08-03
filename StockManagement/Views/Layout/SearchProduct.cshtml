@@ -1,0 +1,28 @@
+﻿
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#search").submit(function () {
+
+            if ($("#arama").val() == "") {
+                $(".text").text("Boş Arama Yapmayınız");
+                return false;
+            }
+
+            return true;
+        });
+
+    });
+</script>
+
+<div class="web_search">
+    @{using (Html.BeginForm("SearchProductMenu", "Product", FormMethod.Post, new { @id = "search" }))
+        {
+
+            <input type="text" name="arama" id="arama" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+            <input type="submit" value=" " />
+        }
+    }
+</div>

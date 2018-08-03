@@ -1,0 +1,147 @@
+﻿@model StockManagement.Areas.Admin.Models.CompanyIndexModel
+
+<div class="col-xl-5 col-lg-6">
+    <section class="card">
+        <div class="twt-feed blue-bg">
+            <div class="corner-ribon black-ribon">
+
+            </div>
+            <div class=""></div>
+
+            <div class="media">
+                <a href="#">
+                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
+                </a>
+                <div class="media-body">
+                    @{
+                        StockManagementOperation.AppUsers gelen = (StockManagementOperation.AppUsers)Session["Login"];
+                    }
+                    <h2 class="text-white display-6">@gelen.Company.First().CompanyName </h2>
+                    <p class="text-light">Partner</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="col-xl-11 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Toplam ürün görüntülenmeleri</div>
+                    <div class="stat-digit">@Model.toplamgoruntulenme</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-four">
+                <div class="stat-icon dib">
+                    <i class="ti-stats-up text-muted"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="text-left dib">
+                        <div class="stat-heading">Günlük Satış</div>
+                        <div class="stat-text">Total: ₺@Model.gunluksatıs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-3 col-md-7">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-four">
+                <div class="stat-icon dib">
+                    <i class="ti-stats-up text-muted"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="text-left dib">
+                        <div class="stat-heading">Aylık Satış</div>
+                        <div class="stat-text">Total:  ₺@Model.aylıksatıs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-four">
+                <div class="stat-icon dib">
+                    <i class="ti-stats-up text-muted"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="text-left dib">
+                        <div class="stat-heading">Yıllık Satıs</div>
+                        <div class="stat-text">Total:  ₺@Model.yıllıksatıs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-four">
+                <div class="stat-icon dib">
+                    <i class="ti-stats-up text-muted"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="text-left dib">
+                        <div class="stat-heading">Total Satıs</div>
+                        <div class="stat-text">Total:  ₺@Model.totalsatıs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.depolar != null)
+{
+    foreach (var storageItem in Model.depolar)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-four">
+                        <div class="stat-icon dib">
+                            <i class="ti-server text-muted"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-heading">Depodaki Urun Sayısı</div>
+                                <div class="stat-heading"><center>@storageItem.StorageName</center></div>
+                                <div class="stat-text">
+                                    
+                                    @{
+                                        int toplam = 0;
+                                        foreach (var storageProduct in storageItem.Products)
+                                        {
+                                            toplam += (int)storageProduct.ProductStock;
+                                        }
+                                        <p>@toplam</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+

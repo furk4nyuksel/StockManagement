@@ -1,0 +1,257 @@
+﻿
+@model List<StockManagementOperation.ProductDetails>
+
+<link href="~/assets3/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/assets3/css/bootstrap.css" rel="stylesheet" />
+<link href="~/assets3/css/product.css" rel="stylesheet" />
+
+
+<div class="container">
+
+    <br />   <br />  <br /> <br /> <br /> <br />
+    <br />   <br />  <br /> <br /> <br /> <br />
+
+    <h3 class="fontawesome-icon-list about-p">En Çok Tıklanan Ürünler</h3>
+
+
+
+    @foreach (StockManagementOperation.ProductDetails Product in Model)
+    {
+
+        <div id="products">
+            <div class="item  col-xs-4 col-lg-4">
+                <div class="thumbnail">
+                    <img class="group list-group-image" style="height:348px;  width:457px;"  src="@Product.Products.ProductPhotograph.First().PhotoSource" alt="" />
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading text-black">
+                            @Product.Products.ProductName
+                        </h4>
+                        <p class="group inner list-group-item-text">
+                            <span class="text-danger"> Kalan Stok: @Product.Products.ProductStock </span>
+                        </p>
+                        <p>Görüntülenme Sayısı: @Product.Products.ProductDetails.First().ProductView</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3">
+                                <p class="lead">
+                                    <del> <small> @string.Format("{0:c}", Product.Products.OldPrice)</small></del>
+                                    @string.Format("{0:c}", Product.Products.NewPrice)
+                                </p>
+                                <h5 class="morris-hover">Satıcı <a href="/Product/CompanyProduct/@Product.Products.CompanyID">@Product.Products.Company.CompanyName</a></h5>
+                            </div>
+                            <div class="col-xs-12 col-md-offset-3">
+                                @Html.ActionLink("Ürün Detayları", "ProductDetails", "Product", new { @id = Product.ProductID }, new { @class = "btn btn-success" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    }
+
+
+</div>
+
+
+@*<script>
+
+    $(document).ready(function () {
+        $('.carousel[data-type="multi"] .item').each(function () {
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+
+            for (var i = 0; i < 4; i++) {
+                next = next.next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+
+                next.children(':first-child').clone().appendTo($(this));
+            }
+        });
+    });
+
+</script>
+
+<style>
+
+    section {
+        padding: 5% 0;
+    }
+
+    .alizarin {
+        background: #e74c3c;
+    }
+
+    .amethyst {
+        background: #9b59b6;
+    }
+
+    .emerald {
+        background: #2ecc71;
+    }
+
+    .midnight-blue {
+        background: #2c3e50;
+    }
+
+    .peter-river {
+        background: #3498db;
+    }
+
+    .dl {
+        background: #f0f0f0;
+        padding: 30px 0;
+        border-radius: 20px;
+        position: relative;
+    }
+
+        .dl:before {
+            content: " ";
+            height: 20px;
+            width: 20px;
+            background: #ddd;
+            border-radius: 20px;
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            margin-left: -10px;
+        }
+
+        .dl .brand {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 10px 15px;
+            margin-top: 10px;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        .dl .discount {
+            min-height: 50px;
+            position: relative;
+            font-size: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-weight: bold;
+            padding: 20px 15px 0;
+            color: #f1c40f;
+        }
+
+            .dl .discount:after {
+                content: " ";
+                border-right: 20px solid transparent;
+                border-left: 20px solid transparent;
+                position: absolute;
+                bottom: -20px;
+                left: 20%;
+            }
+
+            .dl .discount.alizarin:after {
+                border-top: 20px solid #e74c3c;
+            }
+
+            .dl .discount.peter-river:after {
+                border-top: 20px solid #3498db;
+            }
+
+            .dl .discount.emerald:after {
+                border-top: 20px solid #2ecc71;
+            }
+
+            .dl .discount.amethyst:after {
+                border-top: 20px solid #9b59b6;
+            }
+
+            .dl .discount .type {
+                font-size: 20px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                margin-top: -30px;
+            }
+
+        .dl .descr {
+            color: #999;
+            margin-top: 10px;
+            padding: 20px 15px;
+        }
+
+        .dl .ends {
+            padding: 0 15px;
+            color: #f1c40f;
+            margin-bottom: 10px;
+        }
+
+        .dl .coupon {
+            min-height: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 20px 15px;
+        }
+
+            .dl .coupon a.open-code {
+                color: #16a085;
+            }
+
+            .dl .coupon .code {
+                letter-spacing: 1px;
+                border-radius: 4px;
+                margin-top: 10px;
+                padding: 10px 15px;
+                color: #f1c40f;
+                background: #f0f0f0;
+            }
+</style>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+---- Include the above in your HEAD tag --------
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarouse2">
+        <div class="carousel-inner">
+            <div class="item active">
+
+            </div>
+            @foreach (StockManagementOperation.ProductDetails Product in Model)
+            {
+
+                <div class="item">
+                    <div class="col-md-2 col-sm-6 col-xs-9">
+                        <a href="/Product/ProductDetails/@Product.Products.ProductID">
+                            <div class="dl">
+                                <div class="brand">
+                                    <p class="icon-text-size"></p>
+                                    <div class="badge badge-danger float-right">Stok:@Product.Products.ProductStock</div>
+                                </div>
+                            </div>
+
+                            <div class="discount alizarin"> </div>
+
+
+                            <img src="@Product.Products.ProductPhotograph.First().PhotoSource" class="img-responsive">@Product.Products.ProductName
+                        </a>  <p class="lead">
+
+                            <del> <small> @string.Format("{0:c}", Product.Products.OldPrice)</small></del>
+                            @string.Format("{0:c}", Product.Products.NewPrice)
+                        </p>
+                    </div>
+                </div>
+            }
+            <a class="left carousel-control glyphicon glyphicon-chevron-left " href="#myCarouse2" data-slide="prev"></a>
+            <a class="right carousel-control glyphicon glyphicon-chevron-right " href="#myCarouse2" data-slide="next"></a>
+        </div>
+    </div>
+</div>*@

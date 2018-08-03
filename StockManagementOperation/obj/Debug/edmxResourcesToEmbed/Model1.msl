@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="elisModelStoreContainer" CdmEntityContainer="StockEntities">
+    <EntitySetMapping Name="Address">
+      <EntityTypeMapping TypeName="elisModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AddressTitle" ColumnName="AddressTitle" />
+          <ScalarProperty Name="AdresDetails" ColumnName="AdresDetails" />
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppUsers">
+      <EntityTypeMapping TypeName="elisModel.AppUsers">
+        <MappingFragment StoreEntitySet="AppUsers">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BirtDate" ColumnName="BirtDate" />
+          <ScalarProperty Name="CreaDate" ColumnName="CreaDate" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ForgetPassword" ColumnName="ForgetPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cargo">
+      <EntityTypeMapping TypeName="elisModel.Cargo">
+        <MappingFragment StoreEntitySet="Cargo">
+          <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+          <ScalarProperty Name="CargoName" ColumnName="CargoName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="elisModel.Categories">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="elisModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company">
+      <EntityTypeMapping TypeName="elisModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="BankAccountNo" ColumnName="BankAccountNo" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CompanyPhoto" ColumnName="CompanyPhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyOrderPdf">
+      <EntityTypeMapping TypeName="elisModel.CompanyOrderPdf">
+        <MappingFragment StoreEntitySet="CompanyOrderPdf">
+          <ScalarProperty Name="CompanyOrderPdf1" ColumnName="CompanyOrderPdf" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="RndKey" ColumnName="RndKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="County">
+      <EntityTypeMapping TypeName="elisModel.County">
+        <MappingFragment StoreEntitySet="County">
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeletedCompany">
+      <EntityTypeMapping TypeName="elisModel.DeletedCompany">
+        <MappingFragment StoreEntitySet="DeletedCompany">
+          <ScalarProperty Name="DeletedCompanyID" ColumnName="DeletedCompanyID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="elisModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="CreDate" ColumnName="CreDate" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PayInfoID" ColumnName="PayInfoID" />
+          <ScalarProperty Name="OrderInvoice" ColumnName="OrderInvoice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="elisModel.OrderDetails">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayInfo">
+      <EntityTypeMapping TypeName="elisModel.PayInfo">
+        <MappingFragment StoreEntitySet="PayInfo">
+          <ScalarProperty Name="PayID" ColumnName="PayID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="NameOnCard" ColumnName="NameOnCard" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
+          <ScalarProperty Name="Expiration" ColumnName="Expiration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductDetails">
+      <EntityTypeMapping TypeName="elisModel.ProductDetails">
+        <MappingFragment StoreEntitySet="ProductDetails">
+          <ScalarProperty Name="ProductDetailsID" ColumnName="ProductDetailsID" />
+          <ScalarProperty Name="ProductDetailText" ColumnName="ProductDetailText" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+          <ScalarProperty Name="ProductView" ColumnName="ProductView" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductMainPage">
+      <EntityTypeMapping TypeName="elisModel.ProductMainPage">
+        <MappingFragment StoreEntitySet="ProductMainPage">
+          <ScalarProperty Name="ProductMainPageID" ColumnName="ProductMainPageID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductPhotograph">
+      <EntityTypeMapping TypeName="elisModel.ProductPhotograph">
+        <MappingFragment StoreEntitySet="ProductPhotograph">
+          <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PhotoSource" ColumnName="PhotoSource" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="elisModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="OldPrice" ColumnName="OldPrice" />
+          <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="CriticalStock" ColumnName="CriticalStock" />
+          <ScalarProperty Name="StorageID" ColumnName="StorageID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CargoPay" ColumnName="CargoPay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RandomKeyResetPassword">
+      <EntityTypeMapping TypeName="elisModel.RandomKeyResetPassword">
+        <MappingFragment StoreEntitySet="RandomKeyResetPassword">
+          <ScalarProperty Name="RandomKeyID" ColumnName="RandomKeyID" />
+          <ScalarProperty Name="RandomText" ColumnName="RandomText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slider">
+      <EntityTypeMapping TypeName="elisModel.Slider">
+        <MappingFragment StoreEntitySet="Slider">
+          <ScalarProperty Name="SliderID" ColumnName="SliderID" />
+          <ScalarProperty Name="SliderName" ColumnName="SliderName" />
+          <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+          <ScalarProperty Name="SliderUrl" ColumnName="SliderUrl" />
+          <ScalarProperty Name="SliderOrderNumber" ColumnName="SliderOrderNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Storage">
+      <EntityTypeMapping TypeName="elisModel.Storage">
+        <MappingFragment StoreEntitySet="Storage">
+          <ScalarProperty Name="StorageID" ColumnName="StorageID" />
+          <ScalarProperty Name="StorageName" ColumnName="StorageName" />
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="AdressDetails" ColumnName="AdressDetails" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupportNotification">
+      <EntityTypeMapping TypeName="elisModel.SupportNotification">
+        <MappingFragment StoreEntitySet="SupportNotification">
+          <ScalarProperty Name="SupportNotificationID" ColumnName="SupportNotificationID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCart">
+      <EntityTypeMapping TypeName="elisModel.UserCart">
+        <MappingFragment StoreEntitySet="UserCart">
+          <ScalarProperty Name="UserCartID" ColumnName="UserCartID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="CreDate" ColumnName="CreDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

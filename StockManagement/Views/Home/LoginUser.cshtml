@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Üyelik Girişi";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+
+<h2>ForgetPassword</h2>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+
+<h2>Üyelik Girişi</h2>
+
+
+@using (Html.BeginForm("LoginUser", "Home", FormMethod.Post, new { @name = "myForm" }))
+{
+
+
+    <div class="col-lg-5" ng-app="">
+        <div class="form-group">
+
+            <input type="email" class="form-control" name="Email" ng-model="text" placeholder="Email" />
+            <span ng-show="myForm.email.$error.email">Hatalı Mail Adresi Girdiniz</span>
+        </div>
+
+
+
+        <div class="form-group">
+
+            <input type="password" class="form-control " name="sifre1" placeholder="Şifre" />
+
+        </div>
+        <div class="form-group">
+
+            <input type="password" class="form-control " name="sifre2" placeholder="Şifre Tekrar" />
+
+            @{
+                if (ViewBag.sifrehata != null)
+                {
+                    <span class="bg-warning">@ViewBag.sifrehata</span>
+                }
+            }
+        </div>
+
+        <div class="form-group">
+            <h4 class="text-info"> @Html.ActionLink("Şifremi Unuttum", "ForgetPassword", "Home")</h4>
+            <input type="checkbox"  value="1" name="kaydet"/> Beni Kaydet
+            <input type="submit" class="form-control btn-success " value="Giriş Yap" />
+
+
+
+        </div>
+
+    </div>
+}

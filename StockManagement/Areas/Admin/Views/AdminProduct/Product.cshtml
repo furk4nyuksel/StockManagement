@@ -1,0 +1,113 @@
+﻿
+@{
+    <h1 class="align-self-center">
+    @{ViewBag.Title = "Urun Ekle"; }
+    </h1>
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+
+<html lang="en">
+<head>
+    <title>Ürün Ekleme</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+        
+    <div class="container">
+        @if (Session["Hata"]!=null)
+        {
+            <center><h3 class="bg-warning"> @Session["hata"].ToString() </h3></center>
+            Session["Hata"] = null;
+        }
+
+        @using (Html.BeginForm("Product", "AdminProduct", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+
+                 
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" maxlength="30" placeholder="Ürün Adını Giriniz" name="productname">
+                    </div>
+                </div>
+                <br /><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="number" min="0" class="form-control" placeholder="Eski Fiyatı Giriniz" name="oldprice">
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="number" min="0" class="form-control" placeholder="Yeni Fiyatı Giriniz" name="newprice">
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        @Html.DropDownList("ddlCategory", new SelectList(ViewBag.categori, "CategoryID", "CategoryName", ViewBag.categori[1]), "Urununuz için Categori Seciniz", new { @class = "form-control" })
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="number" min="0" class="form-control" placeholder="Stok Miktarı Giriniz" name="productinstock">
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="number"  min="0" class="form-control" placeholder="Urun İçin Kritik Stok Belirleyin" name="criticalstock">
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        
+                            
+                            @Html.DropDownList("ddlStorage", new SelectList(ViewBag.storage, "StorageID", "StorageName" ), "Storage Seciniz", new { @class = "form-control" })
+                        
+
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="number" min="0" class="form-control" placeholder="Kargonuz İçin Fiyat Belirletin" name="cargopay">
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <textarea class="form-control" placeholder="UrunDetayını Giriniz" name="productdetail"></textarea>
+                    </div>
+                </div><br /><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        @Html.DropDownList("ddlCargo", new SelectList(ViewBag.cargo, "CargoID", "CargoName"), "Kargo Seciniz", new { @class = "form-control" })
+                    </div>
+                </div><br /><br />
+
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="file" name="myFile" class="form-control" />
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-10">
+                        <button type="submit" class="btn btn-outline-dark">Ekle</button>
+                    </div>
+                </div>
+
+                
+            
+        
+
+        }
+
+
+
+
+
+
+    </div>
+
+</body>
+</html>

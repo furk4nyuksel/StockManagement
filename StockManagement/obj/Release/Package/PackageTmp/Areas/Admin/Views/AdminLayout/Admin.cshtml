@@ -1,0 +1,138 @@
+﻿@model StockManagement.Areas.Admin.Models.AdminIndexModel
+
+<div class="col-xl-12 col-lg-offset-6">
+    <section class="card">
+        <div class="twt-feed blue-bg">
+            <div class="corner-ribon black-ribon">
+
+            </div>
+            <div class=""></div>
+
+            <div class="media">
+                <a href="#">
+                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
+                </a>
+                <div class="media-body">
+                    @{
+                        StockManagementOperation.AppUsers gelen = (StockManagementOperation.AppUsers)Session["Login"];
+                    }
+                    <h2 class="text-white display-6">@gelen.FirstName </h2>
+                    <p class="text-light">Admin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="col-lg-6 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Toplam Kullanıcı</div>
+                    <div class="stat-digit">@Model.toplamuye</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-6 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Toplam Sirket Sayısı</div>
+                    <div class="stat-digit">@Model.toplamsirket</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*user sayısı*@
+<div class="col-sm-12 mb-5">
+    <div class="card col-lg-6 col-md-6 no-padding bg-flat-color-1">
+        <div class="card-body">
+            <div class="h1 text-muted text-right mb-4">
+                <i class="fa fa-users text-light"></i>
+            </div>
+            <div class="h4 mb-0 text-light">
+                <span class="count">@Model.toplamgoruntulenme</span>
+            </div>
+            <small class="text-uppercase font-weight-bold text-light">Toplam Goruntulenme</small>
+            <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+        </div>
+    </div>
+
+
+    <div class="card col-lg-6 col-md-6 no-padding no-shadow">
+        <div class="card-body bg-flat-color-3">
+            <div class="h1 text-right mb-4">
+                <i class="fa fa-cart-plus text-light"></i>
+            </div>
+            <div class="h4 mb-0 text-light">
+                <span class="count">@Model.toplamurun</span>
+            </div>
+            <small class="text-light text-uppercase font-weight-bold">Toplam Urun Sayısı</small>
+            <div class="progress progress-xs mt-3 mb-0 bg-light" style="width: 40%; height: 5px;"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Günlük Gelir</div>
+                    <div class="stat-digit">@Model.gunluksatıs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Aylık Gelir</div>
+                    <div class="stat-digit">@Model.aylıksatıs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Yıllık Gelir</div>
+                    <div class="stat-digit">@Model.yıllıksatıs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Total Gelir</div>
+                    <div class="stat-digit">@Model.totalsatıs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="elisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="AddressTitle" Type="nvarchar" MaxLength="20" />
+    <Property Name="AdresDetails" Type="nvarchar" MaxLength="200" />
+    <Property Name="CountyID" Type="tinyint" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="AppUsers">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Status" Type="tinyint" />
+    <Property Name="Email" Type="nvarchar" MaxLength="40" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="30" />
+    <Property Name="BirtDate" Type="datetime" />
+    <Property Name="CreaDate" Type="datetime" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="13" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="ForgetPassword" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="CargoID" />
+    </Key>
+    <Property Name="CargoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CargoName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="20" />
+    <Property Name="OrderNumber" Type="tinyint" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="20" />
+    <Property Name="CityCode" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="30" />
+    <Property Name="BankAccountNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CompanyPhoto" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="CompanyOrderPdf">
+    <Key>
+      <PropertyRef Name="CompanyOrderPdf" />
+    </Key>
+    <Property Name="CompanyOrderPdf" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="RndKey" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="County">
+    <Key>
+      <PropertyRef Name="CountyID" />
+    </Key>
+    <Property Name="CountyID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountyName" Type="nvarchar" MaxLength="30" />
+    <Property Name="CityID" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="DeletedCompany">
+    <Key>
+      <PropertyRef Name="DeletedCompanyID" />
+    </Key>
+    <Property Name="DeletedCompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="TotalPrice" Type="float" />
+    <Property Name="AddressID" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="PayInfoID" Type="int" />
+    <Property Name="OrderInvoice" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderDetailsID" />
+    </Key>
+    <Property Name="OrderDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Price" Type="float" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="PayInfo">
+    <Key>
+      <PropertyRef Name="PayID" />
+    </Key>
+    <Property Name="PayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="NameOnCard" Type="nvarchar" MaxLength="30" />
+    <Property Name="CardNumber" Type="nvarchar" MaxLength="16" />
+    <Property Name="SecurityCode" Type="int" />
+    <Property Name="Expiration" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="ProductDetails">
+    <Key>
+      <PropertyRef Name="ProductDetailsID" />
+    </Key>
+    <Property Name="ProductDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductDetailText" Type="nvarchar(max)" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="CargoID" Type="int" />
+    <Property Name="ProductView" Type="float" />
+  </EntityType>
+  <EntityType Name="ProductMainPage">
+    <Key>
+      <PropertyRef Name="ProductMainPageID" />
+    </Key>
+    <Property Name="ProductMainPageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="ProductPhotograph">
+    <Key>
+      <PropertyRef Name="PhotoID" />
+    </Key>
+    <Property Name="PhotoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="PhotoSource" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="30" />
+    <Property Name="OldPrice" Type="float" />
+    <Property Name="NewPrice" Type="float" />
+    <Property Name="CategoryID" Type="tinyint" />
+    <Property Name="ProductStock" Type="int" />
+    <Property Name="CriticalStock" Type="int" />
+    <Property Name="StorageID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CargoPay" Type="float" />
+  </EntityType>
+  <EntityType Name="RandomKeyResetPassword">
+    <Key>
+      <PropertyRef Name="RandomKeyID" />
+    </Key>
+    <Property Name="RandomKeyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RandomText" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="SliderID" />
+    </Key>
+    <Property Name="SliderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SliderName" Type="nvarchar" MaxLength="40" />
+    <Property Name="PhotoUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="SliderUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="SliderOrderNumber" Type="int" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="StorageID" />
+    </Key>
+    <Property Name="StorageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageName" Type="nvarchar" MaxLength="40" />
+    <Property Name="CountyID" Type="tinyint" />
+    <Property Name="AdressDetails" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CompanyID" Type="int" />
+  </EntityType>
+  <EntityType Name="SupportNotification">
+    <Key>
+      <PropertyRef Name="SupportNotificationID" />
+    </Key>
+    <Property Name="SupportNotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="25" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="30" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="Message" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserCart">
+    <Key>
+      <PropertyRef Name="UserCartID" />
+    </Key>
+    <Property Name="UserCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="CreDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <Association Name="FK__Address__CountyI__6477ECF3">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CountyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Address__UserID__6383C8BA">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__UserID__1ED998B2">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CompanyOr__Compa__14270015">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="CompanyOrderPdf" Type="Self.CompanyOrderPdf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanyOrderPdf">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__County__CityID__145C0A3F">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="County" Type="Self.County" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="County">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DeletedCo__Compa__3D2915A8">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="DeletedCompany" Type="Self.DeletedCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="DeletedCompany">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__AddressID__6FE99F9F">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PayInfoID__05D8E0BE">
+    <End Role="PayInfo" Type="Self.PayInfo" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PayInfo">
+        <PropertyRef Name="PayID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PayInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__UserID__6EF57B66">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Order__74AE54BC">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Produ__75A278F5">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PayInfo__UserID__7A672E12">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+    <End Role="PayInfo" Type="Self.PayInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PayInfo">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductDe__Cargo__4D94879B">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="CargoID" />
+      </Principal>
+      <Dependent Role="ProductDetails">
+        <PropertyRef Name="CargoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductDe__Produ__4CA06362">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductMa__Produ__0E6E26BF">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProductMainPage" Type="Self.ProductMainPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductMainPage">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductPh__Produ__3F466844">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProductPhotograph" Type="Self.ProductPhotograph" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductPhotograph">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Catego__38996AB5">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Compan__3A81B327">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__Storag__398D8EEE">
+    <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Storage">
+        <PropertyRef Name="StorageID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="StorageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Storage__Company__7F2BE32F">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Storage">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Storage__CountyI__29572725">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyID" />
+      </Principal>
+      <Dependent Role="Storage">
+        <PropertyRef Name="CountyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserCart__Produc__534D60F1">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="UserCart" Type="Self.UserCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="UserCart">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserCart__UserID__52593CB8">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+    <End Role="UserCart" Type="Self.UserCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserCart">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="elisModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="AppUsers" EntityType="Self.AppUsers" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="CompanyOrderPdf" EntityType="Self.CompanyOrderPdf" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="County" EntityType="Self.County" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="DeletedCompany" EntityType="Self.DeletedCompany" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="PayInfo" EntityType="Self.PayInfo" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="ProductDetails" EntityType="Self.ProductDetails" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="ProductMainPage" EntityType="Self.ProductMainPage" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="ProductPhotograph" EntityType="Self.ProductPhotograph" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="RandomKeyResetPassword" EntityType="Self.RandomKeyResetPassword" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="Slider" EntityType="Self.Slider" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="Storage" EntityType="Self.Storage" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="SupportNotification" EntityType="Self.SupportNotification" Schema="celalsevindi" store:Type="Tables" />
+    <EntitySet Name="UserCart" EntityType="Self.UserCart" Schema="celalsevindi" store:Type="Tables" />
+    <AssociationSet Name="FK__Address__CountyI__6477ECF3" Association="Self.FK__Address__CountyI__6477ECF3">
+      <End Role="County" EntitySet="County" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Address__UserID__6383C8BA" Association="Self.FK__Address__UserID__6383C8BA">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__UserID__1ED998B2" Association="Self.FK__Company__UserID__1ED998B2">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CompanyOr__Compa__14270015" Association="Self.FK__CompanyOr__Compa__14270015">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="CompanyOrderPdf" EntitySet="CompanyOrderPdf" />
+    </AssociationSet>
+    <AssociationSet Name="FK__County__CityID__145C0A3F" Association="Self.FK__County__CityID__145C0A3F">
+      <End Role="City" EntitySet="City" />
+      <End Role="County" EntitySet="County" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DeletedCo__Compa__3D2915A8" Association="Self.FK__DeletedCo__Compa__3D2915A8">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="DeletedCompany" EntitySet="DeletedCompany" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__AddressID__6FE99F9F" Association="Self.FK__Order__AddressID__6FE99F9F">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PayInfoID__05D8E0BE" Association="Self.FK__Order__PayInfoID__05D8E0BE">
+      <End Role="PayInfo" EntitySet="PayInfo" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__UserID__6EF57B66" Association="Self.FK__Order__UserID__6EF57B66">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Order__74AE54BC" Association="Self.FK__OrderDeta__Order__74AE54BC">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Produ__75A278F5" Association="Self.FK__OrderDeta__Produ__75A278F5">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PayInfo__UserID__7A672E12" Association="Self.FK__PayInfo__UserID__7A672E12">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="PayInfo" EntitySet="PayInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductDe__Cargo__4D94879B" Association="Self.FK__ProductDe__Cargo__4D94879B">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="ProductDetails" EntitySet="ProductDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductDe__Produ__4CA06362" Association="Self.FK__ProductDe__Produ__4CA06362">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductDetails" EntitySet="ProductDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductMa__Produ__0E6E26BF" Association="Self.FK__ProductMa__Produ__0E6E26BF">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductMainPage" EntitySet="ProductMainPage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductPh__Produ__3F466844" Association="Self.FK__ProductPh__Produ__3F466844">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductPhotograph" EntitySet="ProductPhotograph" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Catego__38996AB5" Association="Self.FK__Products__Catego__38996AB5">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Compan__3A81B327" Association="Self.FK__Products__Compan__3A81B327">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__Storag__398D8EEE" Association="Self.FK__Products__Storag__398D8EEE">
+      <End Role="Storage" EntitySet="Storage" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Storage__Company__7F2BE32F" Association="Self.FK__Storage__Company__7F2BE32F">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Storage" EntitySet="Storage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Storage__CountyI__29572725" Association="Self.FK__Storage__CountyI__29572725">
+      <End Role="County" EntitySet="County" />
+      <End Role="Storage" EntitySet="Storage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserCart__Produc__534D60F1" Association="Self.FK__UserCart__Produc__534D60F1">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="UserCart" EntitySet="UserCart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserCart__UserID__52593CB8" Association="Self.FK__UserCart__UserID__52593CB8">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="UserCart" EntitySet="UserCart" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

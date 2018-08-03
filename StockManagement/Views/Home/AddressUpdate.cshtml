@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "AddressUpdate";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+<h2>AddressUpdate</h2>
+
+<div class="container">
+
+    @{
+
+        if (Session["UpdateAdress"] != null)
+        {
+            <h3>@Session["UpdateAdress"]</h3>
+            {
+                Session["UpdateAdress"] = null;
+            }
+
+        }
+
+
+        if (Session["AdressController"] != null)
+        {
+            <h3>@Session["AdressController"]</h3>
+            {
+                Session["AdressController"] = null;
+            }
+        }
+    }
+
+
+    <div class="col-lg-5">
+        @using (Html.BeginForm("AddressUpdate", "Home", FormMethod.Post))
+        {
+
+            if (ViewBag.adressveri != null)
+            {
+                var adres = (StockManagementOperation.Address)ViewBag.adressveri;
+
+                <div class="form-group">
+
+                    <input type="text" class="form-control" name="AdressTitle" value="@adres.AddressTitle" placeholder="Adress Başlığı" />
+
+                </div>
+
+                <div class="form-group">
+
+                    <textarea class="form-control" name="AdresUzun" placeholder="Adres">@adres.AdresDetails</textarea>
+
+                </div>
+
+                <div class="form-group">
+                 
+                    @Html.DropDownList("ddlcity", ViewBag.city as SelectList, "Il Seçiniz", new { @class = "form-control" })
+
+                   
+                </div>
+                <div class="form-group">
+
+                    @{
+                        if (ViewBag.County != null)
+                        {
+                            @Html.DropDownList("ddlcountry", ViewBag.County as SelectList, "Ilçe Seçiniz", new { @class = "form-control" })
+                        }
+                        else
+                        {
+                            @Html.DropDownList("ddlcountry", ViewBag.County as SelectList, "Ilçe Seçiniz", new { @class = "form-control" })
+                        }
+                    }
+
+
+
+                </div>
+
+                <input type="number" hidden="hidden" name="adressID" value="@adres.AddressID" />
+
+                <div class="form-group">
+
+                    @{
+                        if (ViewBag.Hatali != null)
+                        {
+                            <h3 class="bg-warning">@ViewBag.Hatali</h3>
+                        }
+                    }
+
+                    <input type="submit" class="form-control btn-success" value="Kaydet" />
+
+                </div>
+
+                            }
+
+                        }
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlcity").change(function () {
+            //alert("Değişti");
+            $("#ddlcountry").empty();
+            $.ajax({
+                url:'@Url.Action("GetCountry", "Adress")',
+                data: { id: $("#ddlcity").val() },
+                type: 'Post',
+                dataType: 'json',
+                success: function (counties) {
+                    //alert("Test");
+                    $.each(counties, function (i, counties) {
+                        //alert("Test");
+                        $("#ddlcountry").append('<option value="' + counties.Value + '">' + counties.Text + '</option>');
+                    });
+                }
+            });
+
+        });
+    });
+</script>

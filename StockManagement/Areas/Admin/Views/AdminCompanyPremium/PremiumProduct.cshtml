@@ -1,0 +1,18 @@
+﻿@model IEnumerable<StockManagementOperation.Products>
+@{
+    ViewBag.Title = "PremiumProduct";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+
+
+<table class="table-bordered table-responsive table-striped table-condensed table-hover col-6">
+    @foreach (var premiumproduct in Model)
+    {
+        <tr class="col-lg-6">
+                    <th width="300px">@premiumproduct.ProductName</th>
+                    <th width="300px">@premiumproduct.Company.CompanyName</th>
+                    <th> <img src="@premiumproduct.ProductPhotograph.First().PhotoSource" style="width:300px;height:100px;" /> </th>
+                    <td width="300px">@Html.ActionLink("Premium Urun İstegi Gonder", "SendProduct", "AdminCompanyPremium", new { @productid = premiumproduct.ProductID }, new { @class = "btn btn-warning" })</td>
+        </tr>
+    }
+</table>

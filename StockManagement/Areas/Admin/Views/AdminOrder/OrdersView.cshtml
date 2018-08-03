@@ -1,0 +1,64 @@
+﻿@model IEnumerable<StockManagementOperation.OrderDetails>
+@{
+
+}
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="page-header">
+                <h1><small class="pull-right">   @{ 
+                     if (Model.First().Products.Company.CompanyPhoto==null)
+                        {
+                            <img width="25" height="25" src="~/images/admin.jpg">
+                        }
+                        else
+                        {
+                            var base64 = Convert.ToBase64String(Model.First().Products.Company.CompanyPhoto);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            <img width="25" height="25" src="@imgSrc">
+
+                        }
+                    
+                }      Raporları </small> Satılan Tüm Ürünler 
+                
+               
+                
+            </div>
+            <div class="comments-list">
+
+                @{
+                    foreach (var orders in Model)
+                    {
+                        <div class="media">
+                            <p class="pull-right"><small>Satılma Tarihi @String.Format("{0:dd/MM/yyyy}", orders.Order.CreDate)</small></p>
+                            <p class="pull-right"><small>Kalan Stok @orders.Products.ProductStock</small></p>
+                            <p class="pull-right"><small>Satıs Miktarı @orders.Quantity</small></p>
+                            <p class="pull-right"><small>Ürün Birim Fiyatı @orders.Products.NewPrice</small></p>
+                            <a class="media-left" href="#">
+                                <img width="25" height="25" src="@orders.Products.ProductPhotograph.First().PhotoSource">
+                            </a>
+                            <div class="media-body">
+
+                                <h4 class="media-heading user_name">@orders.Products.ProductName</h4>
+                                @orders.Products.ProductDetails.First().ProductDetailText
+
+                                <p><small> Kategori: @orders.Products.Categories.CategoryName </small></p>
+                            </div>
+
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

@@ -1,0 +1,155 @@
+﻿@model IEnumerable<StockManagementOperation.City>
+@{
+    ViewBag.Title = "Storage";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#flip").click(function () {
+                $("#panel").slideToggle("slow");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#flip1").click(function () {
+                $("#panel1").slideToggle("slow");
+            });
+        });
+    </script>
+
+    <style>
+        #panel, #flip {
+            padding: 5px;
+            text-align: center;
+            background-color: #F1F2F7;
+            border: solid 1px #272C33;
+        }
+
+        #panel {
+            padding: 50px;
+            display: none;
+        }
+
+        #panel1, #flip1 {
+            padding: 5px;
+            text-align: center;
+            background-color: #F1F2F7;
+            border: solid 1px #272C33;
+        }
+
+        #panel1 {
+            padding: 50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    @{
+        if (Session["hata"] != "")
+        {
+            <center><h3 class="bg-warning">@Session["hata"]</h3></center>
+            Session["hata"] = "";
+        }
+    }
+    <div id="flip">Storage Ekle</div>
+    <div id="panel">
+        @using (Html.BeginForm("AddStorage", "AdminStorage", FormMethod.Post))
+        {
+            //string storagename,int countyıd,string detay
+
+            <div class="form-group">
+
+                <div class="col-lg-4">
+
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control text-center " placeholder="Depo İsmi Giriniz" name="StorageName" />
+                    <br />
+                    @Html.DropDownList("ddlCity", new SelectList(Model, "CityID", "CityName"), "il seciniz", new { @class = "form-control" })
+                    <br />
+                    @Html.DropDownList("ddlCounty", new SelectList(string.Empty, "CountyID", "CountyName"), "ilce seciniz", new { @class = "form-control" })
+                    <br />
+                    <textarea class="form-control text-center " placeholder="Adres Detayını Giriniz" name="detay"></textarea>
+                    <br />
+
+                </div>
+
+
+
+                <br />
+
+            </div>
+            <br /><br /><br /><br /><br /><br /><br /><br />
+            <div class="form-group col-lg-12">
+                <input type="submit" class="btn btn-success" value="Kaydet" />
+            </div>
+            <br />
+            <br />
+        }
+    </div>
+
+    <div id="flip1">Storage Sil</div>
+    <div id="panel1">
+
+        <table class="table-bordered table-responsive table-striped table-condensed table-hover col-6">
+            <tr>
+                <th>Depo İsmi</th>
+                <th>Depo Detayı</th>
+                <th> İl</th>
+                <th>İlçe </th>
+                <th></th>
+            </tr>
+            @if (ViewBag.storage != null)
+            {
+                foreach (var storage in (List<StockManagementOperation.Storage>)ViewBag.storage)
+                {
+
+                    <tr class="col-lg-6">
+                        @if (storage.IsActive.Value)
+                        {
+                            <td class="col-lg-2"> @storage.StorageName</td>
+                            <td class="col-lg-2"> @storage.AdressDetails</td>
+                            <td class="col-lg-2"> @storage.County.City.CityName</td>
+                            <td class="col-lg-2">@storage.County.CountyName</td>
+                            <td class="col-lg-4"> @Html.ActionLink("Sil", "DeleteStorage", "AdminStorage", new { @id = storage.StorageID }, new { @class = "btn btn-danger" })</td>
+
+                        }
+                    </tr>
+                }
+            }
+
+        </table>
+
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlCity").change(function () {
+            //alert("Değişti");
+            $("#ddlCounty").empty();
+            $.ajax({
+                url:'@Url.Action("GetCounty","AdminStorage")',
+                data: { id : $("#ddlCity").val() },
+                type: 'Post',
+                dataType: 'json',
+                success: function (counties) {
+                    //alert("Test");
+                    $.each(counties, function (i, counties) {
+                        //alert("Test");
+                        $("#ddlCounty").append('<option value="' + counties.Value + '">' + counties.Text + '</option>');
+                    });
+                }
+            });
+
+        });
+    });
+</script>

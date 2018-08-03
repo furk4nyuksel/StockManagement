@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "AddAdress";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="container">
+
+    <div class="col-lg-5">
+        @using (Html.BeginForm("AddAdress", "Adress", FormMethod.Post))
+        {
+
+
+            <div class="form-group">
+
+                <input type="text" class="form-control" name="AdressTitle" placeholder="Adress Başlığı" />
+
+            </div>
+
+            <div class="form-group">
+
+                <textarea class="form-control" name="AdresUzun" placeholder="Adres"></textarea>
+
+            </div>
+
+            <div class="form-group">
+               
+                @Html.DropDownList("ddlcity", new SelectList(ViewBag.city, "CityID", "CityName"), "Il Seçiniz", new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+
+                @Html.DropDownList("ddlcountry", new SelectList(string.Empty, "CountryID", "CountyName"), "Ilçe Seçiniz", new { @class = "form-control" })
+
+            </div>
+
+
+            <div class="form-group">
+
+                @{
+                    if (ViewBag.Hatali != null)
+                    {
+                        <h3 class="bg-warning">@ViewBag.Hatali</h3>
+                    }
+                }
+
+                <input type="submit" class="form-control btn-success" value="Kaydet" />
+
+            </div>
+
+
+        }
+    </div>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlcity").change(function () {
+            //alert("Değişti");
+            $("#ddlcountry").empty();
+            $.ajax({
+                url:'@Url.Action("GetCountry", "Adress")',
+                data: { id: $("#ddlcity").val() },
+                type: 'Post',
+                dataType: 'json',
+                success: function (counties) {
+                    //alert("Test");
+                    $.each(counties, function (i, counties) {
+                        //alert("Test");
+                        $("#ddlcountry").append('<option value="' + counties.Value + '">' + counties.Text + '</option>');
+                    });
+                }
+            });
+
+        });
+    });
+</script>

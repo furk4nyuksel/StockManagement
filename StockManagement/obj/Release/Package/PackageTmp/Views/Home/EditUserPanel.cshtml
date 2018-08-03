@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "EditUserPanel";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+
+<h2>Kullanıcı Paneli</h2>
+
+@{
+
+
+
+
+    <a class="btn btn-success" href="@Url.Action("Index","OrderList")">Siparişlerim</a> <br /> <br />
+    @Html.ActionLink("Kullanıcı Bilgilerini Güncelle", "EditUserInformation", "Home", new { @class = "btn btn-success" }); <br /> <br />
+    @Html.ActionLink("Şifre Degiştir", "EditPassword", "Home", new { @class = "btn btn-success" });<br /> <br />
+    @Html.ActionLink("Adres Güncelle", "UpdateAddressSelect", "Home", new { @class = "btn btn-success" });<br /> <br />
+
+
+
+
+
+}

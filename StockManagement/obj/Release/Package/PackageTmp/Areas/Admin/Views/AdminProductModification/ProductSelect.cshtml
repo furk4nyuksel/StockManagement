@@ -1,0 +1,21 @@
+﻿@model IEnumerable<StockManagementOperation.Products>
+@{
+    ViewBag.Title = "ProductSelect";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+
+
+<center>
+    <table class="table-bordered table-responsive table-striped table-condensed table-hover col-6">
+        @foreach (var productıtem in Model)
+        {
+            <tr>
+                <th width="300px">@productıtem.ProductName</th>
+                <th width="300px">@productıtem.NewPrice</th>
+                <th style="width:300px;height:100px"> <img src="@productıtem.ProductPhotograph.First().PhotoSource" style="width:300px;height:100px;" /> </th>
+                <td width="300px">@Html.ActionLink("Düzenle", "ProductModification", "AdminProductModification", new { @id = productıtem.ProductID }, new { @class = "btn btn-danger" })</td>
+                <td width="300px">@Html.ActionLink("Resim Ekle", "AddPicture", "AdminProductModification", new { @id = productıtem.ProductID }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </table>
+</center>

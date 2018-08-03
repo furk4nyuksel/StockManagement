@@ -1,0 +1,147 @@
+﻿@model StockManagement.Models.TotalOrderModelList
+
+
+
+@{
+    ViewBag.Title = "Index";
+  
+}
+
+ 
+
+<style>
+
+    .invoice-title h2, .invoice-title h3 {
+        display: inline-block;
+    }
+
+    .table > tbody > tr > .no-line {
+        border-top: none;
+    }
+
+    .table > thead > tr > .no-line {
+        border-bottom: none;
+    }
+
+    .table > tbody > tr > .thick-line {
+        border-top: 2px solid;
+    }
+</style>
+
+
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+@if (ViewBag.gelen == null)
+{
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+           
+
+                <div class="invoice-title">
+
+
+                    <h2>Fatura</h2><h3 class="pull-right">Sipariş No: @Model.Order.OrderID </h3>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <address>
+                            <strong>Faturalandırılan:</strong><br>
+                            @Model.Order.AppUsers.UserName<br>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <address>
+                            <strong>Kargolanan Adress:</strong><br>
+                            @Model.Order.AppUsers.UserName<br>
+                            @Model.Order.Address.AdresDetails<br>
+                        </address>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <address>
+                            <strong>Ödeme Yöntemi:</strong><br>
+                            Kredi Kartı  (@string.Format("************{0}",Model.Order.PayInfo.CardNumber.Trim().Substring(12, 4))) <br>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <address>
+                            <strong>Sipariş Tarihi:</strong><br>
+                            @Model.Order.CreDate<br><br>
+                        </address>
+
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>Sipariş Özeti</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td><strong>Ürün</strong></td>
+                                    <td class="text-center"><strong>Fiyat</strong></td>
+                                    <td class="text-center"><strong>Adet</strong></td>
+                                    <td class="text-right"><strong>Tutar</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var siparis2 in Model.OrderDetails)
+                                {
+                                    <tr>
+
+                                        <td>@siparis2.Products.ProductName</td>
+                                        <td class="text-center">@siparis2.Products.NewPrice</td>
+                                        <td class="text-center">@siparis2.Quantity</td>
+                                        <td class="text-right">@{var sonuc = siparis2.Quantity * siparis2.Products.NewPrice;}@sonuc ₺</td>
+                                        @{Session.Add("tutar", sonuc);
+                                        }
+                                    </tr>
+                                }
+
+                                <tr>
+                                    <td class="thick-line"></td>
+                                    <td class="thick-line"></td>
+                                    <td class="thick-line text-center"><strong>Toplam Ürün Sayısı: @Model.GetQuantity</strong></td>
+                                    <td class="thick-line text-right"> Toplam Tutar:@Model.GetTotalAmount ₺</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  }
+  else
+{
+<h3>@ViewBag.gelen</h3>
+}
+
+
+
+ 
+

@@ -1,0 +1,11 @@
+D:\Publish\StockManagement\StockManagementOperation\bin\Debug\StockManagementOperation.dll.config
+D:\Publish\StockManagement\StockManagementOperation\bin\Debug\StockManagementOperation.dll
+D:\Publish\StockManagement\StockManagementOperation\bin\Debug\StockManagementOperation.pdb
+D:\Publish\StockManagement\StockManagementOperation\bin\Debug\EntityFramework.dll
+D:\Publish\StockManagement\StockManagementOperation\bin\Debug\EntityFramework.SqlServer.dll
+D:\Publish\StockManagement\StockManagementOperation\bin\Debug\EntityFramework.xml
+D:\Publish\StockManagement\StockManagementOperation\bin\Debug\EntityFramework.SqlServer.xml
+D:\Publish\StockManagement\StockManagementOperation\obj\Debug\StockManagementOperation.csproj.CoreCompileInputs.cache
+D:\Publish\StockManagement\StockManagementOperation\obj\Debug\StockManagementOperation.csproj.CopyComplete
+D:\Publish\StockManagement\StockManagementOperation\obj\Debug\StockManagementOperation.dll
+D:\Publish\StockManagement\StockManagementOperation\obj\Debug\StockManagementOperation.pdb

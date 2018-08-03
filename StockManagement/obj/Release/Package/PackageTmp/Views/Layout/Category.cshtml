@@ -1,0 +1,12 @@
+﻿
+@{
+    foreach (StockManagementOperation.Categories category in ViewBag.Category)
+    {
+    
+
+        <li> @Html.ActionLink(category.CategoryName, "CategoryProduct", "Product",new {@id=category.CategoryID },new {@class="fa"}) </li>
+
+    }
+
+
+}

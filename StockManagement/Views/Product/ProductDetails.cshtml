@@ -1,0 +1,181 @@
+﻿@model StockManagementOperation.ProductDetails
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+<style>
+
+    .gallery-wrap .img-big-wrap img {
+        height: 450px;
+        width: auto;
+        display: inline-block;
+        cursor: zoom-in;
+    }
+
+
+    .gallery-wrap .img-small-wrap .item-gallery {
+        width: 60px;
+        height: 60px;
+        border: 1px solid #ddd;
+        margin: 7px 2px;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    .gallery-wrap .img-small-wrap {
+        text-align: center;
+    }
+
+        .gallery-wrap .img-small-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: zoom-in;
+        }
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+    .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+    }
+</style>
+
+
+<link href="maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container">
+
+
+
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-5 border-right">
+                <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                        <div> <a href="#"><img src="@Model.Products.ProductPhotograph.First().PhotoSource"></a></div>
+                    </div> <!-- slider-product.// -->
+                    <div class="img-small-wrap">
+                        @{
+                            foreach (var item in Model.Products.ProductPhotograph)
+                            {
+
+                                <div class="item-gallery"> <img src="@item.PhotoSource"> </div>
+                            }
+
+
+                        }
+                    </div> <!-- slider-nav.// -->
+                </article> <!-- gallery-wrap .end// -->
+            </aside>
+            <aside class="col-sm-7">
+                <article class="card-body p-5">
+                    <h1>@Model.Products.ProductName </h1>
+                    <p class="price-detail-wrap">
+
+
+                    </p> <!-- price-detail-wrap .// -->
+
+                    <dl class="param  panel-title">
+                        <dt>Kargo</dt>
+                        <dd class="text-primary">@Model.Cargo.CargoName Kargo Ücreti=@Model.Products.CargoPay</dd>
+
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="param  panel-title">
+                        <dt>Kalan Stok</dt>
+                        <dd>@Model.Products.ProductStock</dd>
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="param  panel-title">
+                        <dt>Satın Alacağınız Şirket</dt>
+
+
+                        <dd><a href="/Product/CompanyProduct/@Model.Products.CompanyID">@Model.Products.Company.CompanyName</a></dd>
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="param  panel-title">
+                        <dt>Görüntülenme Sayısı</dt>
+                        <dd>@Model.ProductView</dd>
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="param  panel-title">
+                        <dt>Ürün Fiyatı</dt>
+                        <p class="lead">
+                            <h4>  <del> @string.Format("{0:c}", Model.Products.OldPrice)  </del></h4>
+                            <h4>  @string.Format("{0:c}", Model.Products.NewPrice) </h4>
+                        </p>
+
+                    </dl>  <!-- item-property-hor .// -->
+                    <hr>
+
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <dl class="param param-inline">
+
+                                <dt>Miktar: </dt>
+                                <dd>
+                                    @using (Html.BeginForm("AddUserCart", "UserCart", FormMethod.Post))
+                                    {
+
+                                        <input type="number" min="1" max="5000" value="1" name="count" />
+
+                                        <input type="hidden" name="id" value="@Model.ProductID" />
+                                        <input type="submit" class="btn btn-success" value="Sepete Ekle" />
+                                    }
+
+                                </dd>
+
+
+                            </dl>  <!-- item-property .// -->
+                        </div> <!-- col.// -->
+                        <div class="col-sm-7">
+                            <dl class="param param-inline"></dl>  <!-- item-property .// -->
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+                    <hr>
+
+                </article> <!-- card-body.// -->
+            </aside> <!-- col.// -->
+        </div> <!-- row.// -->
+    </div> <!-- card.// -->
+
+</div>
+<button class="accordion">Ürün Detayları</button>
+<div class="panel">
+    <p>@Model.ProductDetailText</p>
+</div>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>
+<!--container.//-->

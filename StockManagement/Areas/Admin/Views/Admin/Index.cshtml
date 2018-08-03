@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+
+
+    @if (Session["Login"] != null)
+    {
+        StockManagementOperation.AppUsers gelen = (StockManagementOperation.AppUsers)Session["Login"];
+        if (gelen.Status == 2 )
+        {
+            @Html.Action("Company", "AdminLayout");
+            
+        }
+        if (gelen.Status == 3)
+        {
+            @Html.Action("Admin", "AdminLayout");
+        }
+    }
+
+@*<div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-four">
+                    <div class="stat-icon dib">
+                        <i class="ti-stats-up text-muted"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="text-left dib">
+                            <div class="stat-heading">Daily Sales</div>
+                            <div class="stat-text">Total: $76,58,714</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-5 col-lg-3">
+        <div class="card text-white bg-flat-color-4">
+            <div class="card-body pb-0">
+                <div class="dropdown float-right">
+                </div>
+                <h4 class="mb-0">
+                    <span class="count">10468</span>
+                </h4>
+                <p class="text-light">Members online</p>
+
+                <div class="chart-wrapper px-3" style="height:70px;" height="70">
+                    <canvas id="widgetChart4"></canvas>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-xl-11 col-lg-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Total Profit</div>
+                        <div class="stat-digit">1,012</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-11 col-lg-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">New Customer</div>
+                        <div class="stat-digit">961</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+

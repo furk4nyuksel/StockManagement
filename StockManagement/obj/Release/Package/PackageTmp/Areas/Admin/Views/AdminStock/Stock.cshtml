@@ -1,0 +1,69 @@
+﻿@model IEnumerable<StockManagementOperation.Products>
+@{
+    ViewBag.Title = "Stock";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+<center>
+    @if (Session["hata"] != "")
+    {
+        <center><h3 class="bg-warning">@Session["hata"]</h3></center>
+        Session["hata"] = "";
+    }
+    <div class="col-sm-6" style="width:auto">
+        <h3>Critic Stockta Olan Ürünler</h3>
+
+        <table class="table-bordered table-responsive table-striped table-condensed table-hover" style="width:auto">
+
+            @foreach (var productıtem in Model)
+            {
+                <tr style="background-color:lightgrey">
+                    @using (Html.BeginForm("Stock", "AdminStock", FormMethod.Post))
+                    {
+                        if (productıtem.ProductStock < productıtem.CriticalStock)
+                        {
+                            <th><input type="number" hidden="hidden" min="@productıtem.ProductID" max="@productıtem.ProductID" name="productid" value="@productıtem.ProductID" /></th>
+                            <th style="width:auto"> <img src="@productıtem.ProductPhotograph.First().PhotoSource" style="width:300px;height:100px;" /> </th>
+                            <td style="width:auto"><label>@productıtem.ProductName</label></td>
+                            <td style="width:auto"><label>@productıtem.ProductStock</label></td>
+                            <td style="width:auto"><label>@productıtem.CriticalStock</label></td>
+                            <th style="width:auto"> <input type="number" min="1" max="10000" class="form-control text-center " placeholder="Eklemek İstediginiz Stok Miktarı" name="stockcount" value="" /></th>
+                            <td style="width:auto"><input type="submit" class="btn btn-success" value="Stogu Arttır" /></td>
+                        }
+                    }
+                </tr>
+            }
+
+        </table>
+    </div>
+    
+   
+    <div class="col-lg-6" style="width:auto">
+        <h3>Critic Stockta Olmayan Ürünler</h3>
+
+        <table class="table-bordered table-responsive table-striped table-condensed table-hover">
+            @foreach (var productıtem in Model)
+            {
+
+                <tr class="col-6">
+                    @using (Html.BeginForm("Stock", "AdminStock", FormMethod.Post))
+                    {
+                        if (productıtem.ProductStock > productıtem.CriticalStock)
+                        {
+                            <th><input type="number" hidden="hidden" min="@productıtem.ProductID" max="@productıtem.ProductID" name="productid" value="@productıtem.ProductID" /></th>
+                            <th style="width:auto"> <img src="@productıtem.ProductPhotograph.First().PhotoSource" style="width:300px;height:100px;" /> </th>
+                            <td style="width:auto"><label>@productıtem.ProductName</label></td>
+                            <td style="width:auto"><label>@productıtem.ProductStock</label></td>
+                            <td style="width:auto"><label>@productıtem.CriticalStock</label></td>
+                            <th style="width:auto"> <input type="number" min="1" max="10000" class="form-control text-center " placeholder="Eklemek İstediginiz Stok Miktarı" name="stockcount" value="" /></th>
+                            <td style="width:auto"><input type="submit" class="btn btn-success" value="Stogu Arttır" /></td>
+                        }
+
+                    }
+                </tr>
+
+            }
+        </table>
+    </div>
+
+</center>
+            

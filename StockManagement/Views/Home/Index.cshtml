@@ -1,0 +1,41 @@
+﻿@model IEnumerable<StockManagementOperation.AppUsers>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+<div class="col-lg-12">
+
+    @Html.Action("Slider", "Layout")
+</div>
+
+
+
+
+
+@Html.Action("GetPremiumProduct", "Product")
+
+
+@Html.Action("GetCategoryCookieProduct", "Product")
+
+
+
+@*@Html.Action("TopViewProducts", "Product")*@
+
+
+
+
+@*@Html.Action("TopSellingProducts", "Product")*@
+
+
+
+
+
+
+
+
+
+

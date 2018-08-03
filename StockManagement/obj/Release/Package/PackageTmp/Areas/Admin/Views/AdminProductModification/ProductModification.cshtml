@@ -1,0 +1,71 @@
+﻿@model StockManagement.Areas.Admin.Models.ProductModel
+
+@{
+    ViewBag.Title = "ProductModification";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+
+@{
+    if (this.IsPost)
+    {
+        if (Session["hata"] != "")
+        {
+            <center><h3 class="bg-warning">@Session["hata"]</h3></center>
+            Session["hata"] = "";
+        }
+    }
+}
+@using (Html.BeginForm("ProductModification", "AdminProductModification", FormMethod.Post))
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="Ürün Adını Giriniz" name="productname" value="@Model.product.ProductName">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control" placeholder="Eski Fiyatı Giriniz" name="oldprice" value="@Model.product.OldPrice">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control" placeholder="Yeni Fiyatı Giriniz" name="newprice" value="@Model.product.NewPrice">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control" placeholder="Stok Miktarı Giriniz" name="productinstock" value="@Model.product.ProductStock">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control" placeholder="Urun İçin Kritik Stok Belirleyin" name="criticalstock" value="@Model.product.CriticalStock">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownList("ddlStorage", new SelectList(Model.storage, "StorageID", "StorageName", Model.product.StorageID), "Storage Seciniz", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control" placeholder="Kargonuz İçin Fiyat Belirletin" name="cargopay" value="@Model.product.CargoPay">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <textarea class="form-control" placeholder="UrunDetayını Giriniz" name="productdetail">@Model.product.ProductDetails.First().ProductDetailText</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownList("ddlCargo", new SelectList(Model.cargo, "CargoID", "CargoName", Model.product.ProductDetails.First().Cargo.CargoID), "Kargo Seciniz", new { @class = "form-control" })
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

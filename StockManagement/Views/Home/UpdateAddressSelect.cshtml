@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "UpdateAddressSelect";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+<h2>Adress Güncelle</h2>
+
+
+@if (ViewBag.hata == null)
+{
+    if (TempData["updateadress"] != null)
+    {
+        <h3 class="bg-warning">@TempData["updateadress"]</h3>
+    }
+
+
+    foreach (StockManagementOperation.Address adress in ViewBag.Address)
+    {
+        <table class="table-bordered table-responsive table-striped table-condensed table-hover  ">
+            <tr>
+                <th>Adres Başlığı</th>
+                <th>Adres Detayı</th>
+                <th>İl</th>
+                <th>İlçe</th>
+
+
+            </tr>
+
+            <tr>
+                <td>@adress.AddressTitle </td>
+                <td>@adress.AdresDetails</td>
+                <td>@adress.County.City.CityName</td>
+                <td>@adress.County.CountyName</td>
+                <td>@Html.ActionLink("Seç", "AddressUpdate", "Home", new { @adressid = adress.AddressID }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("Sil", "UpdateAdressRemove", "Home", new { @id = adress.AddressID }, new { @class = "btn btn-success" })</td>
+            </tr>
+
+            <br />
+
+            <br />
+            <br />
+
+            
+        </table>
+
+        }
+    }
+    else
+    {
+     
+
+    <h1>@ViewBag.hata</h1>
+
+
+    
+
+}
+
+
+
+
+

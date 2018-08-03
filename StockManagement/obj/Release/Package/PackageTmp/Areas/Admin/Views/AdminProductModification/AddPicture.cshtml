@@ -1,0 +1,30 @@
+﻿@model List<StockManagementOperation.ProductPhotograph>
+@{
+    ViewBag.Title = "AddPicture";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+<center>
+
+
+
+    @using (Html.BeginForm("AddPicture", "AdminProductModification", FormMethod.Post, new { @enctype = "multipart/form-data"}) )
+    {
+            <div class="col-xs-4">
+                <input type="file" name="myFile" class="form-control" />
+            </div>
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-radio">Ekle</button>
+            </div>
+    }
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    @foreach (var productıtem in Model)
+    {
+        
+            <div class="col-xs-4">
+                <label>@productıtem.Products.ProductName</label>
+                <img src=@productıtem.PhotoSource class="img-responsive img-radio" style="width:300px;height:100px">
+                @Html.ActionLink("Resmi Sil", "DeletePic","AdminProductModification", new {@photosource=productıtem.PhotoSource }, new { @class = "btn btn-danger" })
+            </div>
+        
+    }
+</center>

@@ -1,0 +1,49 @@
+﻿@model List<StockManagementOperation.Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+<h2>Siparişlerim</h2>
+
+
+@if (ViewBag.bos != null)
+{
+<h3 class="bg-warning">@ViewBag.bos</h3>
+}
+else
+{
+    <table class="table-bordered table-responsive table-striped table-condensed table-hover  ">
+        <tr>
+            <th>Sipariş Numarası</th>
+            <th>Ürün Fiyatı</th>
+            <th> Satın Alma Tarihi</th>
+            <th>Tutar</th>
+            <th>Detaylar</th>
+        </tr>
+
+        @foreach (StockManagementOperation.Order orders in Model)
+        {
+            <tr>
+
+                <td>@orders.OrderID</td>
+                <td>@orders.TotalPrice</td>
+                <td>@String.Format("{0:dd/MM/yyyy}", orders.CreDate)</td>
+                <td>@orders.TotalPrice ₺</td>
+                <td>@Html.ActionLink("Detaylar", "OrderDetails", "OrderList", new { @orderid = orders.OrderID }, new { @class = "btn btn-success" })</td>
+            </tr>
+
+            <br />
+
+            <br />
+            <br />
+
+
+
+
+
+
+        }
+    </table>
+}
+

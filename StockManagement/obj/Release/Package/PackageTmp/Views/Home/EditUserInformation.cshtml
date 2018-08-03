@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "EditUserInformation";
+    Layout = "~/Views/Anasayfa2.cshtml";
+}
+
+<style>
+    #dt {
+        text-indent: -500px;
+        height: 25px;
+        width: 200px;
+    }
+</style>
+<script>
+    function mydate() {
+        //alert("");
+        document.getElementById("dt").hidden = false;
+        document.getElementById("ndt").hidden = true;
+    }
+    function mydate1() {
+        d = new Date(document.getElementById("dt").value);
+        dt = d.getDate();
+        mn = d.getMonth();
+        mn++;
+        yy = d.getFullYear();
+        document.getElementById("ndt").value = dt + "/" + mn + "/" + yy
+        document.getElementById("ndt").hidden = false;
+        document.getElementById("dt").hidden = true;
+    }
+
+</script>
+
+<h2>Kullanıcı Bilgilerini Güncelle</h2>
+<script src="~/assets3/js/bootstrap-formhelpers-phone.js"></script>
+@using (Html.BeginForm("EditUserInformation", "Home", FormMethod.Post))
+{
+
+    StockManagementOperation.AppUsers gelen = (StockManagementOperation.AppUsers)Session["Login"];
+
+    if (gelen.FirstName != null)
+    {
+        if (ViewBag.Hatali != null)
+        {
+            <br />
+            <h4 class="bg-dark">@ViewBag.Hatali</h4>
+            <br />
+            <br />
+        }
+
+        <div class="col-lg-5" ng-app="">
+            <div class="form-group">
+
+                <input type="text" class="form-control" name="ad" placeholder="Adı" value="@gelen.FirstName" />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" class="form-control " name="soyad" placeholder="Soyadı" value="@gelen.LastName" />
+
+            </div>
+            <div class="form-group">
+
+
+                <input type="text" class="form-control input-medium  bfh-phone" name="phonenumber" placeholder="Telefon Number" data-format="ddddddddddd" value="@gelen.PhoneNumber">
+
+            </div>
+
+            <div class="form-group">
+
+                <input name="birthdate" min="1939-01-01" max="2000-01-01" type="date" value="@string.Format("{0:yyyy-MM-dd}",gelen.BirtDate)">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <input type="submit" class="form-control btn-success " value="Güncelle" />
+
+
+            </div>
+
+        </div>
+
+    }
+
+    else
+    {
+        if (ViewBag.Hatali != null)
+        {
+            <br />
+            <h4 class="bg-dark">@ViewBag.Hatali</h4>
+            <br />
+            <br />
+        }
+        <div class="col-lg-5" ng-app="">
+            <div class="form-group">
+
+                <input type="text" class="form-control" name="ad" placeholder="Adı" />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" class="form-control " name="soyad" placeholder="Soyadı" />
+
+            </div>
+            <div class="form-group">
+
+                <input type="text" class="form-control input-medium  bfh-phone" name="phonenumber" placeholder="Telefon Number" data-format="ddddddddddd" value="0">
+
+
+            </div>
+
+            <div class="form-group">
+
+                <input name="birthdate" min="1939-01-01" max="2000-01-01" type="date">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <input type="submit" class="form-control btn-success " />
+
+
+            </div>
+
+        </div>
+
+    }
+}

@@ -1,0 +1,73 @@
+﻿@model List<StockManagementOperation.Products>
+
+<link href="~/assets3/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/assets3/css/bootstrap.css" rel="stylesheet" />
+<link href="~/assets3/css/product.css" rel="stylesheet" />
+
+<div class="container">
+    @if (Request.Cookies["Category"] != null)
+    {
+
+        if (Model != null)
+        {
+
+            <br /> <br /> <br /> <br /> <br /> <br />
+            <br /> <br /> <br /> <br /> <br /> <br />
+            <br /> <br /> <br /> <br /> <br /> <br />
+            <br /> <br /> <br /> <br /> <br /> <br />
+            <h1>Son Ziyaret Ettiğiniz Kategorinin Ürünleri</h1>
+
+
+
+            foreach (StockManagementOperation.Products Product in Model)
+            {
+
+                 
+                <div id="products">
+                    <div class="item  col-xs-4 col-lg-4">
+                        <div class="thumbnail">
+                            <img class="group list-group-image" style="height:348px;  width:457px;"   src="@Product.ProductPhotograph.First().PhotoSource" alt="" />
+                            <div class="caption">
+                                <h4 class="group inner list-group-item-heading text-black">
+                                    @Product.ProductName
+                                </h4>
+                                <p class="group inner list-group-item-text">
+                                    <span class="text-danger"> Kalan Stok: @Product.ProductStock </span>
+                                </p>
+                                <p>Görüntülenme Sayısı: @Product.ProductDetails.First().ProductView</p>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <p class="lead">
+                                            <del> <small> @string.Format("{0:c}", Product.OldPrice)</small></del>
+                                            @string.Format("{0:c}", Product.NewPrice)
+                                        </p>
+                                        <h5 class="morris-hover">Satıcı <a href="/Product/CompanyProduct/@Product.CompanyID">@Product.Company.CompanyName</a></h5>
+                                    </div>
+                                    <div class="col-xs-12 col-md-offset-3">
+                                        @Html.ActionLink("Ürün Detayları", "ProductDetails", "Product", new { @id = Product.ProductID }, new { @class = "btn btn-success" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            }
+
+        }
+
+    }
+
+
+
+    else
+    {
+
+
+
+    }
+
+</div>

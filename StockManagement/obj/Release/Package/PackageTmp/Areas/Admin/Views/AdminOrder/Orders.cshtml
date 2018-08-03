@@ -1,0 +1,41 @@
+﻿@model IEnumerable<StockManagementOperation.OrderDetails>
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Admin_Panel.cshtml";
+}
+
+<center>
+    <table class="table-bordered table-striped table-condensed table-hover  ">
+
+        <tr>
+            <th>Sipariş Numarası</th>
+            <th>Görüntü</th>
+            <th>Ürün Adı</th>
+            <th>ürün Adeti</th>
+            <th>Ürün Fiyatı</th>
+            <th> Satın Alma Tarihi</th>
+        </tr>
+
+        @foreach (var orders in Model)
+        {
+            <tr>
+                <td align="center">@orders.OrderID</td>
+                <td align="center"><img src="@orders.Products.ProductPhotograph.First().PhotoSource" style="width:100px;height:100px;" /></td>
+                <td align="center"><a href="~/Product/ProductDetails/@orders.Products.ProductID">@orders.Products.ProductName</a></td>
+                <td align="center">@orders.Quantity</td>
+                <td align="center">@orders.Products.NewPrice</td>
+                <td align="center">@String.Format("{0:dd/MM/yyyy}", orders.Order.CreDate)</td>
+            </tr>
+        }
+    </table>
+
+    @if (Model.Count()>0)
+    {
+        
+            @Html.ActionLink("Pdf Olarak Cıkart", "OrderPdf", "AdminOrder", new { }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Xls Olarak Cıkart", "ExportToExcel", new { }, new { @class = "btn btn-success" })
+        
+    }
+
+</center>
+

@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagement", "StockManagement\StockManagement.csproj", "{25C95176-B25F-4E7C-B095-DD2C656A12C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagementOperation", "StockManagementOperation\StockManagementOperation.csproj", "{27CB4E13-B73D-41C5-8B24-8A4B7FEFF1F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25C95176-B25F-4E7C-B095-DD2C656A12C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C95176-B25F-4E7C-B095-DD2C656A12C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C95176-B25F-4E7C-B095-DD2C656A12C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C95176-B25F-4E7C-B095-DD2C656A12C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CB4E13-B73D-41C5-8B24-8A4B7FEFF1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CB4E13-B73D-41C5-8B24-8A4B7FEFF1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CB4E13-B73D-41C5-8B24-8A4B7FEFF1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CB4E13-B73D-41C5-8B24-8A4B7FEFF1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F4C5682-636F-4221-A884-046E2A75AC3B}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://stockmanagementpublish.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = StockManagement\\StockManagement.csproj
+		SccProjectName1 = StockManagement
+		SccLocalPath1 = StockManagement
+		SccProjectUniqueName2 = StockManagementOperation\\StockManagementOperation.csproj
+		SccProjectName2 = StockManagementOperation
+		SccLocalPath2 = StockManagementOperation
+	EndGlobalSection
+EndGlobal

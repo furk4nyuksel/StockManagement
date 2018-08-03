@@ -1,0 +1,20 @@
+﻿@model StockManagementOperation.Company
+
+@if (Model != null)
+{
+    if (Model.CompanyPhoto == null)
+    {
+        <img class="user-avatar rounded-circle" src="~/images/admin.jpg" alt="User Avatar">
+    }
+    else
+    {
+        var base64 = Convert.ToBase64String(Model.CompanyPhoto);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        <img class="user-avatar rounded-circle" src="@imgSrc" alt="User Avatar">
+
+    }
+}
+else
+{
+    <img class="user-avatar rounded-circle" src="~/images/admin.jpg" alt="User Avatar">
+}
